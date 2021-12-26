@@ -1,5 +1,12 @@
 use glam::{Vec2};
 
+#[cfg(test)]
+mod world_state_tests;
+
+mod world_state;
+
+use world_state::{WorldState, City};
+
 fn main() {
     println!("Hello, world!");
 
@@ -12,44 +19,9 @@ fn main() {
         ]
     };
 
-    world_state = world_state.getNextState();
+    world_state = world_state.get_next_state();
 
 }
 
-struct City {
-    position: Vec2,
-    direction: Vec2,
-}
 
-trait Moves {
-    fn moveMe(&self) -> Vec2;
-}
 
-impl Moves for City {
-    fn moveMe(&self) -> Vec2 {
-        let next_position = self.position + self.direction;
-
-        return next_position;
-    }
-}
-
-struct WorldState {
-    cities: Vec<City>
-}
-
-impl WorldState {
-    fn getNextState(&self) -> WorldState {
-        let collision_unchecked_cities: Vec<City> = self.cities.iter().map(|city| {
-            let next_position = city.moveMe();
-
-            return City {
-                position: next_position,
-                direction: city.direction
-            };
-        }).collect();
-
-        return WorldState {
-            cities: collision_unchecked_cities
-        }
-    }
-}

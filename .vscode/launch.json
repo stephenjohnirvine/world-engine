@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "configurations": [
+    {
+        "type": "lldb",
+        "request": "custom",
+        "name": "Custom launch",
+        "program": "${workspaceRoot}/target/debug/world-engine",
+        "args": [],
+        "cwd": "${workspaceRoot}",
+    }
+    ],
+    
+    
+}
