@@ -19,9 +19,7 @@ trait Moves {
 
 impl Moves for City {
     fn move_me(&self) -> Vec2 {
-        let next_position = self.position + self.direction;
-
-        return next_position;
+        self.position + self.direction
     }
 }
 
@@ -51,15 +49,15 @@ impl WorldState {
             .map(|city| {
                 let next_position = city.move_me();
 
-                return City {
+                City {
                     position: next_position,
                     direction: city.direction,
-                };
+                }
             })
             .collect();
 
-        return WorldState {
+        WorldState {
             cities: collision_unchecked_cities,
-        };
+        }
     }
 }
