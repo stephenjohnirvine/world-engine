@@ -1,11 +1,17 @@
 use glam::Vec2;
 
+// Traits
+mod moves;
+
+// Objects
+mod city;
+
+mod world_state;
 #[cfg(test)]
 mod world_state_tests;
 
-mod world_state;
-
-use world_state::{City, WorldState};
+use city::{Behavior, City};
+use world_state::WorldState;
 
 fn main() {
     println!("Hello, world!");
@@ -14,6 +20,9 @@ fn main() {
         cities: vec![City {
             position: Vec2::new(0.0, 0.0),
             direction: Vec2::new(1.0, 0.0),
+            name: "FirstCity".to_string(),
+            strength: 10f32,
+            behavior: Behavior::AGGRESSIVE,
         }],
     };
 
