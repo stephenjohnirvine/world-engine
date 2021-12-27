@@ -1,9 +1,16 @@
 use glam::Vec2;
+use std::fmt;
 
 #[derive(PartialEq, Debug)]
 pub struct City {
     pub position: Vec2,
     pub direction: Vec2,
+}
+
+impl fmt::Display for City {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "({}, {})", self.position.x, self.position.y)
+    }
 }
 
 trait Moves {
@@ -21,6 +28,19 @@ impl Moves for City {
 #[derive(Debug, PartialEq)]
 pub struct WorldState {
     pub cities: Vec<City>,
+}
+
+impl fmt::Display for WorldState {
+    #[allow(unused_must_use)]
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        writeln!(f, "Cities ({}):", self.cities.len());
+        for c in self.cities.iter() {
+            writeln!(f, " - {}", c);
+        }
+        writeln!(f);
+
+        Ok(())
+    }
 }
 
 impl WorldState {

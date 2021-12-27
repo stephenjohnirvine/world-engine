@@ -18,4 +18,6 @@ fn main() {
     };
 
     world_state = world_state.get_next_state();
+
+    print!("{}", world_state);
 }
